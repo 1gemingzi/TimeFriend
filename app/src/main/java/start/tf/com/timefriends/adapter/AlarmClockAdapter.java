@@ -26,8 +26,11 @@ import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.*;
 import android.widget.CompoundButton.OnCheckedChangeListener;
+//import com.balysv.materialripple.MaterialRippleLayout;
 import start.tf.com.timefriends.R;
 import start.tf.com.timefriends.bean.AlarmClock;
+import start.tf.com.timefriends.database.AlarmClockOperate;
+import start.tf.com.timefriends.listener.OnItemClickListener;
 import start.tf.com.timefriends.util.MyUtil;
 
 import java.util.List;
@@ -85,9 +88,9 @@ public class AlarmClockAdapter extends RecyclerView.Adapter<AlarmClockAdapter.My
                 R.layout.lv_alarm_clock, parent, false));
     }
 
-    private AdapterView.OnItemClickListener mOnItemClickListener;
+    private OnItemClickListener mOnItemClickListener;
 
-    public void setOnItemClickListener(AdapterView.OnItemClickListener mOnItemClickListener) {
+    public void setOnItemClickListener(OnItemClickListener mOnItemClickListener) {
         this.mOnItemClickListener = mOnItemClickListener;
     }
 
@@ -105,62 +108,63 @@ public class AlarmClockAdapter extends RecyclerView.Adapter<AlarmClockAdapter.My
 //                }
 //            });
 //
+////
 //            viewHolder.rippleView.setOnLongClickListener(new View.OnLongClickListener() {
-//                @Override
-//                public boolean onLongClick(View v) {
-//                    if (isCanClick) {
-//                        mOnItemClickListener.onItemLongClick(viewHolder.itemView, viewHolder.getLayoutPosition());
-//                        return false;
+//                    @Override
+//                    public boolean onLongClick(View v) {
+//                        if (isCanClick) {
+//                            mOnItemClickListener.onItemLongClick(viewHolder.itemView, viewHolder.getLayoutPosition());
+//                            return false;
+//                        }
+//                        return true;
 //                    }
-//                    return true;
-//                }
 //            });
 //        }
 
         // 当闹钟为开启状态时
-//        if (alarmClock.isOnOff()) {
-//            // 设置字体颜色为白色
-//            viewHolder.time.setTextColor(mWhite);
-//            viewHolder.repeat.setTextColor(mWhite);
-//            viewHolder.tag.setTextColor(mWhite);
-//        } else {
-//            // 设置字体颜色为淡灰色
-//            viewHolder.time.setTextColor(mWhiteTrans);
-//            viewHolder.repeat.setTextColor(mWhiteTrans);
-//            viewHolder.tag.setTextColor(mWhiteTrans);
-//
-//        }
+        if (alarmClock.isOnOff()) {
+            // 设置字体颜色为白色
+            viewHolder.time.setTextColor(mWhite);
+            viewHolder.repeat.setTextColor(mWhite);
+            viewHolder.tag.setTextColor(mWhite);
+        } else {
+            // 设置字体颜色为淡灰色
+            viewHolder.time.setTextColor(mWhiteTrans);
+            viewHolder.repeat.setTextColor(mWhiteTrans);
+            viewHolder.tag.setTextColor(mWhiteTrans);
+
+        }
 
         // 显示删除按钮
-//        if (mIsDisplayDeleteBtn) {
-//            viewHolder.deleteBtn.setVisibility(View.VISIBLE);
-//            viewHolder.deleteBtn.setOnClickListener(new OnClickListener() {
-//
-//                @Override
-//                public void onClick(View v) {
-                    // 删除闹钟数据
+        if (mIsDisplayDeleteBtn) {
+            viewHolder.deleteBtn.setVisibility(View.VISIBLE);
+            viewHolder.deleteBtn.setOnClickListener(new OnClickListener() {
+
+                @Override
+                public void onClick(View v) {
+//                     删除闹钟数据
 //                    TabAlarmClockOperate.getInstance(mContext).delete(alarmClock
 //                            .getAlarmClockCode());
 //                    AlarmClockOperate.getInstance().deleteAlarmClock(alarmClock);
 //                    OttoAppConfig.getInstance().post(new AlarmClockDeleteEvent(viewHolder.getAdapterPosition(), alarmClock));
-//
-//                    // 关闭闹钟
-//                    MyUtil.cancelAlarmClock(mContext,
-//                            alarmClock.getId());
-//                    // 关闭小睡
-//                    MyUtil.cancelAlarmClock(mContext,
-//                            -alarmClock.getId());
-//
-//                    NotificationManager notificationManager = (NotificationManager) mContext
-//                            .getSystemService(Activity.NOTIFICATION_SERVICE);
-//                    // 取消下拉列表通知消息
-//                    notificationManager.cancel(alarmClock.getId());
 
-//                }
-//            });
-//        } else {
-//            viewHolder.deleteBtn.setVisibility(View.GONE);
-//        }
+                    // 关闭闹钟
+                    MyUtil.cancelAlarmClock(mContext,
+                            alarmClock.getId());
+                    // 关闭小睡
+                    MyUtil.cancelAlarmClock(mContext,
+                            -alarmClock.getId());
+
+                    NotificationManager notificationManager = (NotificationManager) mContext
+                            .getSystemService(Activity.NOTIFICATION_SERVICE);
+                    // 取消下拉列表通知消息
+                    notificationManager.cancel(alarmClock.getId());
+
+                }
+            });
+        } else {
+            viewHolder.deleteBtn.setVisibility(View.GONE);
+        }
 //
 //        // 取得格式化后的时间
 //        String time = MyUtil.formatTime(alarmClock.getHour(),
@@ -224,7 +228,7 @@ public class AlarmClockAdapter extends RecyclerView.Adapter<AlarmClockAdapter.My
 //                    }
 //                });
         // 设定闹钟开关
-//        viewHolder.toggleBtn.setChecked(alarmClock.isOnOff());
+        viewHolder.toggleBtn.setChecked(alarmClock.isOnOff());
     }
 
     @Override
@@ -237,25 +241,25 @@ public class AlarmClockAdapter extends RecyclerView.Adapter<AlarmClockAdapter.My
      */
     class MyViewHolder extends RecyclerView.ViewHolder {
 //        MaterialRippleLayout rippleView;
-//        // 时间
-//        TextView time;
-//        // 重复
-//        TextView repeat;
-//        // 标签
-//        TextView tag;
-//        // 开关
-//        ToggleButton toggleBtn;
-//        // 删除
-//        ImageView deleteBtn;
+        // 时间
+        TextView time;
+        // 重复
+        TextView repeat;
+        // 标签
+        TextView tag;
+        // 开关
+        ToggleButton toggleBtn;
+        // 删除
+        ImageView deleteBtn;
 //
         public MyViewHolder(View itemView) {
             super(itemView);
 //            rippleView = (MaterialRippleLayout) itemView.findViewById(R.id.ripple_view);
-//            time = (TextView) itemView.findViewById(R.id.tv_time);
-//            repeat = (TextView) itemView.findViewById(R.id.tv_repeat);
-//            tag = (TextView) itemView.findViewById(R.id.tv_tag);
-//            toggleBtn = (ToggleButton) itemView.findViewById(R.id.toggle_btn);
-//            deleteBtn = (ImageView) itemView.findViewById(R.id.alarm_list_delete_btn);
+            time = (TextView) itemView.findViewById(R.id.tv_time);
+            repeat = (TextView) itemView.findViewById(R.id.tv_repeat);
+            tag = (TextView) itemView.findViewById(R.id.tv_tag);
+            toggleBtn = (ToggleButton) itemView.findViewById(R.id.toggle_btn);
+            deleteBtn = (ImageView) itemView.findViewById(R.id.alarm_list_delete_btn);
         }
     }
 

@@ -10,6 +10,7 @@ import android.os.Build;
 import android.os.SystemClock;
 import android.os.Vibrator;
 import android.util.Log;
+import start.tf.com.timefriends.activities.TimerOnTimeActivity;
 import start.tf.com.timefriends.bean.AlarmClock;
 import start.tf.com.timefriends.broadcast.AlarmClockBroadcast;
 import start.tf.com.timefriends.constant.Constants;
@@ -76,19 +77,19 @@ public class MyUtil {
      * @param context    context
      * @param timeRemain 剩余时间
      */
-//    public static void startAlarmTimer(Context context, long timeRemain) {
-//        Intent intent = new Intent(context, TimerOnTimeActivity.class);
-//        PendingIntent pi = PendingIntent.getActivity(context,
-//                1000, intent, PendingIntent.FLAG_UPDATE_CURRENT);
-//        AlarmManager alarmManager = (AlarmManager) context
-//                .getSystemService(Context.ALARM_SERVICE);
-//        long countdownTime = timeRemain + SystemClock.elapsedRealtime();
-//        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
-//            alarmManager.setExact(AlarmManager.ELAPSED_REALTIME_WAKEUP, countdownTime, pi);
-//        } else {
-//            alarmManager.set(AlarmManager.ELAPSED_REALTIME_WAKEUP, countdownTime, pi);
-//        }
-//    }
+    public static void startAlarmTimer(Context context, long timeRemain) {
+        Intent intent = new Intent(context, TimerOnTimeActivity.class);
+        PendingIntent pi = PendingIntent.getActivity(context,
+                1000, intent, PendingIntent.FLAG_UPDATE_CURRENT);
+        AlarmManager alarmManager = (AlarmManager) context
+                .getSystemService(Context.ALARM_SERVICE);
+        long countdownTime = timeRemain + SystemClock.elapsedRealtime();
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
+            alarmManager.setExact(AlarmManager.ELAPSED_REALTIME_WAKEUP, countdownTime, pi);
+        } else {
+            alarmManager.set(AlarmManager.ELAPSED_REALTIME_WAKEUP, countdownTime, pi);
+        }
+    }
 
     /**
      * 取得下次响铃时间

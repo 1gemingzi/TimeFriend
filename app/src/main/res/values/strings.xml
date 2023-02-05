@@ -88,4 +88,29 @@
     <string name="num">60</string>
     <string name="times">次数</string>
     <string name="cancel">取消</string>
+
+    <!-- 音频播放 -->
+    <string name="play_fail">播放失败</string>
+
+    <!--计时-->
+    <string name="timer_on_time">计时器时间到了！</string>
+    <string name="start">开始</string>
+    <string name="quick_timer">快捷计时</string>
+    <string name="stop">暂停</string>
+    <string name="reset">重置</string>
+    <string name="siesta">午睡</string>
+    <string name="facial_mask">面膜</string>
+    <string name="instant_noodles">泡面</string>
+    <string name="run">跑步</string>
+
+    <!-- 录音详情画面 -->
+    <string name="file_name">文件名称：</string>
+    <string name="file_format">文件格式：</string>
+    <string name="file_size">文件大小：</string>
+    <string name="alter_time">修改时间：</string>
+    <string name="play_duration">播放时长：</string>
+    <string name="save_path">保存路径：</string>
+    <string name="roger">知道了</string>
+    <string name="unknown">未知</string>
+    <string name="amr">amr</string>
 </resources>

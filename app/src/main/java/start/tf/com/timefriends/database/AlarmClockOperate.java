@@ -51,6 +51,7 @@ public class AlarmClockOperate {
 
     public void updateAlarmClock(AlarmClock alarmClock) {
         if (alarmClock != null) {
+            alarmClockList.remove(alarmClock);
             // alarmClock.update(alarmClock.getId()); 此方法不能修改默认值
             // 如果想要将某一列的数据修改成默认值的话，还需要借助setToDefault()方法。
             // 不适合做闹钟更新，故采用ContentValues方法更新
